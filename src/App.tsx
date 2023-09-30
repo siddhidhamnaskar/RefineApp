@@ -39,7 +39,18 @@ import {
   CategoryList,
   CategoryShow,
 } from "pages/categories";
-import { Login } from "pages/login";
+import {
+   Login,
+   Home,
+   Agents,
+   MyProfiles,
+   PropertyDetails,
+   AllProperties,
+   AgentProfile,
+   EditProperty,
+   CreateProperty
+ } from "pages";
+
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
@@ -172,19 +183,22 @@ function App() {
                   // },
                   {
                     name: "dashboard",
-                    list: MuiInferencer,
+                    list: Home,
                     icon:<VillaOutlined/>
                   
                   },
                   {
                     name: "property",
                     list: MuiInferencer,
+                    create:CreateProperty,
+                    edit:EditProperty,
+                    show:PropertyDetails,
                     icon:<VillaOutlined/>
                   
                   },
                   {
                     name: "agent",
-                    list: MuiInferencer,
+                    list: Agents,
                     icon:<PeopleAltOutlined/>
                   
                   },
@@ -235,6 +249,24 @@ function App() {
                       index
                       element={<NavigateToResource resource="dashboard" />}
                     />
+                     <Route path="/dashboard">
+                      <Route index element={<Home/>} />
+                      {/* <Route path="create" element={<BlogPostCreate />} />
+                      <Route path="edit/:id" element={<BlogPostEdit />} />
+                      <Route path="show/:id" element={<BlogPostShow />} /> */}
+                    </Route>
+                    <Route path="/property">
+                      <Route index element={<AllProperties/>} />
+                      <Route path="create" element={<CreateProperty />} /> 
+                      <Route path="edit/:id" element={<EditProperty/>} />
+                      <Route path="show/:id" element={<PropertyDetails/>} /> 
+                    </Route>
+                    <Route path="/agent">
+                      <Route index element={<Agents/>} />
+                      {/* <Route path="create" element={<BlogPostCreate />} />
+                      <Route path="edit/:id" element={<BlogPostEdit />} />
+                      <Route path="show/:id" element={<BlogPostShow />} /> */}
+                    </Route>
                     <Route path="/blog_posts">
                       <Route index element={<BlogPostList />} />
                       <Route path="create" element={<BlogPostCreate />} />
