@@ -9,8 +9,10 @@ import { ThemedTitleV2 } from "@refinedev/mui";
 import { CredentialResponse } from "../interfaces/google";
 
 // Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+// const GOOGLE_CLIENT_ID =
+  // "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+
+  const GOOGLE_CLIENT_ID="1020597029060-1fo4pvvms08khn353ek6je8khriavb15.apps.googleusercontent.com";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();

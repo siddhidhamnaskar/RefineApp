@@ -1,7 +1,9 @@
+import  "./index.css"
+
 import {
   AuthBindings,
   Authenticated,
-  GitHubBanner,
+  
   Refine,
 } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
@@ -38,10 +40,13 @@ import {
   CategoryShow,
 } from "pages/categories";
 import { Login } from "pages/login";
+
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
+import {VillaOutlined,PeopleAltOutlined,StarOutlineRounded,ChatBubbleOutline,AccountCircleOutlined} from "@mui/icons-material"
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -58,6 +63,8 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 });
 
 function App() {
+
+
   const authProvider: AuthBindings = {
     login: async ({ credential }: CredentialResponse) => {
       const profileObj = credential ? parseJwt(credential) : null;
@@ -134,9 +141,11 @@ function App() {
     },
   };
 
+ 
+
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -148,32 +157,63 @@ function App() {
                 notificationProvider={notificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
+              
                 resources={[
+                  // {
+                  //   name: "blog_posts",
+                  //   list: MuiInferencer,
+                  //   edit:MuiInferencer,
+                  //   show:MuiInferencer,
+                  //   create:MuiInferencer,
+                  //   meta: {
+                  //     canDelete: true,
+                  //   },
+                  
+                  // },
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
+                    name: "dashboard",
+                    list: MuiInferencer,
+                    icon:<VillaOutlined/>
+                  
                   },
                   {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
+                    name: "property",
+                    list: MuiInferencer,
+                    icon:<VillaOutlined/>
+                  
                   },
+                  {
+                    name: "agent",
+                    list: MuiInferencer,
+                    icon:<PeopleAltOutlined/>
+                  
+                  },
+                  {
+                    name: "review",
+                    list: MuiInferencer,
+                    icon:<StarOutlineRounded/>
+                  
+                  },
+                  {
+                    name: "message",
+                    list: MuiInferencer,
+                    icon:<ChatBubbleOutline/>
+                  },
+                  {
+                    name: "my-profile",
+                    options:{
+                      label:"My Profile"
+                    },
+                    list: MuiInferencer,
+                    icon:<AccountCircleOutlined/>
+                  
+                  },
+                 
                 ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
-                  projectId: "W5RbNu-EzAujH-SuR21T",
+                  projectId: "DQTeoQ-tl8Gpy-H4ZXvS",
                 }}
               >
                 <Routes>
@@ -193,9 +233,9 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="dashboard" />}
                     />
-                    <Route path="/blog-posts">
+                    <Route path="/blog_posts">
                       <Route index element={<BlogPostList />} />
                       <Route path="create" element={<BlogPostCreate />} />
                       <Route path="edit/:id" element={<BlogPostEdit />} />
