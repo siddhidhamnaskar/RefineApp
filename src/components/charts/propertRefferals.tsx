@@ -10,7 +10,7 @@ interface ProgressBarProps {
     color: string;
 }
 
-const ProgressBar = ({ title, percentage, color }: ProgressBarProps) => (
+const ProgressBar = ({ title, percentage, color }:ProgressBarProps) => (
     <Box width="100%">
         <Stack
             direction="row"

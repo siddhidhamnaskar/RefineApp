@@ -188,7 +188,7 @@ function App() {
                   
                   },
                   {
-                    name: "property",
+                    name: "properties",
                     list: MuiInferencer,
                     create:CreateProperty,
                     edit:EditProperty,
@@ -255,7 +255,7 @@ function App() {
                       <Route path="edit/:id" element={<BlogPostEdit />} />
                       <Route path="show/:id" element={<BlogPostShow />} /> */}
                     </Route>
-                    <Route path="/property">
+                    <Route path="/properties">
                       <Route index element={<AllProperties/>} />
                       <Route path="create" element={<CreateProperty />} /> 
                       <Route path="edit/:id" element={<EditProperty/>} />
