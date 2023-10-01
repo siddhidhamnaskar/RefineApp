@@ -80,14 +80,39 @@ function App() {
     login: async ({ credential }: CredentialResponse) => {
       const profileObj = credential ? parseJwt(credential) : null;
 
-      if (profileObj) {
+      if(profileObj){
+        const response=await fetch("http://localhost:8080/api/v1/users",{
+          method:"POST",
+          headers:{
+            "Content-type":"application/json"
+          },
+          body:JSON.stringify({
+            name:profileObj.name,
+            email:profileObj.email,
+            avatar:profileObj.picture
+
+          })
+        })
+
+        const data=await response.json();
+
+        if(response.status==200)
+        {
         localStorage.setItem(
           "user",
           JSON.stringify({
             ...profileObj,
             avatar: profileObj.picture,
+            userId:data._id
           })
-        );
+        )
+        }
+
+
+      }
+
+      
+      
 
         localStorage.setItem("token", `${credential}`);
 
@@ -95,7 +120,7 @@ function App() {
           success: true,
           redirectTo: "/",
         };
-      }
+      
 
       return {
         success: false,
